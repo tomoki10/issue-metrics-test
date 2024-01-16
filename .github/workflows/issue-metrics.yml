@@ -26,10 +26,17 @@ jobs:
           echo "$first_day..$last_day"
           echo "last_month=$first_day..$last_day" >> "$GITHUB_ENV"
 
+      - name: Generate GitHub Apps token
+        id: generate
+        uses: tibdex/github-app-token@v1
+        with:
+          app_id: ${{ secrets.APP_ID }}
+          private_key: ${{ secrets.PRIVATE_KEY }}
+
       - name: Run issue-metrics tool
         uses: github/issue-metrics@v2
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ steps.generate.outputs.token }}
           SEARCH_QUERY: 'repo:tomoki10/issue-metrics-test is:issue created:${{ env.last_month }} -reason:"not planned"'
 
       - name: Create issue
