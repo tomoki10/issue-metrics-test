@@ -43,5 +43,5 @@ jobs:
         uses: peter-evans/create-issue-from-file@v4
         with:
           title: Monthly issue metrics report
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ steps.generate.outputs.token }}
           content-filepath: ./issue_metrics.md
