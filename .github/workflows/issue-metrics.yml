@@ -38,7 +38,7 @@ jobs:
         env:
           GH_TOKEN: ${{ steps.generate.outputs.token }}
           SEARCH_QUERY: 'repo:tomoki10/issue-metrics-test is:issue created:${{ env.last_month }} -reason:"not planned"'
-          IGNORE_USERS: 'github-actions[bot]'
+          LABELS_TO_MEASURE: 'bug,sample'
 
       - name: Create issue
         uses: peter-evans/create-issue-from-file@v4
