@@ -37,11 +37,11 @@ jobs:
         uses: github/issue-metrics@v2
         env:
           GH_TOKEN: ${{ steps.generate.outputs.token }}
-          SEARCH_QUERY: "repo:tomoki10/issue-metrics-test is:issue created:${{ env.last_month }} -reason:'not planned'"
+          SEARCH_QUERY: "repo:tomoki10/issue-metrics-test is:pr created:${{ env.last_month }} -reason:'not planned'"
 
       - name: Create issue
         uses: peter-evans/create-issue-from-file@v4
         with:
-          title: Monthly issue metrics report
+          title: Monthly pr metrics report
           token: ${{ secrets.GITHUB_TOKEN }}
           content-filepath: ./issue_metrics.md
